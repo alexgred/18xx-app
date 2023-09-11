@@ -1,12 +1,10 @@
 :root {
   --max-width: 1200px;
   --border-radius: 12px;
-
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-
   }
 }
 
@@ -23,7 +21,6 @@ body {
 }
 
 body {
-
 }
 
 a {
