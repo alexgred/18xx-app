@@ -1,6 +1,9 @@
 :root {
   --max-width: 1200px;
   --border-radius: 12px;
+  --container-padding: 20px;
+
+  --color-border: #656565;
 }
 
 @media (prefers-color-scheme: dark) {
