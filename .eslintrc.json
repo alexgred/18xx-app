@@ -11,6 +11,7 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "arrow-body-style": ["error", "as-needed"]
   }
 }
