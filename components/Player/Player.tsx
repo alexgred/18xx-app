@@ -1,3 +1,5 @@
+import styles from './Player.module.css';
+
 export default function Player({
   name,
   total,
@@ -6,11 +8,11 @@ export default function Player({
   total: number;
 }) {
   return (
-    <div>
-      <div>{name}</div>
-      <div>
-        <span>Total:</span>
-        <span>{total}</span>
+    <div className={styles.player}>
+      <div className={styles.name}>{name}</div>
+      <div className={styles.total}>
+        <span className={styles.label}>Total:</span>
+        <span className={styles.value}>{total}</span>
       </div>
     </div>
   );

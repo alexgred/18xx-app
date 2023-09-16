@@ -1,0 +1,39 @@
+.company {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
+  padding: var(--container-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  border-left: 5px solid rgba(202, 79, 79, 0.918);
+  padding-left: 8px;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  margin-left: 5px;
+}
+
+.controls {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}

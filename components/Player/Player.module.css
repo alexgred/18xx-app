@@ -1,0 +1,25 @@
+.player {
+  padding: var(--container-padding);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  margin-left: 5px;
+}
