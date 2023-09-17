@@ -3,17 +3,23 @@
 import { ChangeEvent, useState } from 'react';
 import styles from './Company.module.css';
 
-export default function Company({ name, total }: {name: string, total: number}) {
+export default function Company({
+  name,
+  total,
+}: {
+  name: string;
+  total: number;
+}) {
   const [treasury, setTreasury] = useState<number>(total);
   const [income, setIncome] = useState<number>(0);
 
-  const handleIncomeChange = (event: ChangeEvent<HTMLInputElement>) => {
+  function handleIncomeChange(event: ChangeEvent<HTMLInputElement>) {
     setIncome(event.target!.valueAsNumber);
-  };
+  }
 
-  const handleTreasuryChange = () => {
+  function handleTreasuryChange() {
     setTreasury(() => treasury + income);
-  };
+  }
 
   return (
     <div className={styles.company}>
@@ -24,9 +30,12 @@ export default function Company({ name, total }: {name: string, total: number}) 
       </div>
 
       <div className={styles.controls}>
-        <input type="number" onChange={handleIncomeChange} />
+        <input type="number" step="10" onChange={handleIncomeChange} />
         <button type="button" onClick={handleTreasuryChange}>
-          Save
+          Hold
+        </button>
+        <button type="button">
+          Dividend
         </button>
         <button type="button">Edit</button>
       </div>
