@@ -1,6 +1,7 @@
 import Company from '../Company/Company';
 import styles from './CompaniesSection.module.css';
 import json from '../../data/companies.json';
+import AddCompany from './AddCompany/AddCompany';
 
 export default function CompaniesSection() {
   const list = json.companies?.map((companies) => (
@@ -10,6 +11,7 @@ export default function CompaniesSection() {
   return (
     <div className={styles.items}>
       {list}
+      <AddCompany />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+{
+  "companies": [
+    {
+      "id": 0,
+      "name": "NWS"
+    },
+    {
+      "id": 1,
+      "name": "BTR"
+    },
+    {
+      "id": 2,
+      "name": "ZBU"
+    }
+  ]
+}
