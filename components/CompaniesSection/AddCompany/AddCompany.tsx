@@ -1,7 +1,7 @@
 'use client';
 
 import FormAddCompany from "@/components/Forms/FormAddCompany/FormAddCompany";
-import Modal from "@/components/Modal/Modal";
+import Modal from "@/components/ui/Modal/Modal";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
