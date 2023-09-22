@@ -1,9 +1,12 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
-export default function ToolsDividend() {
+export default function ToolsDividend({counter = ''}: {counter: string}) {
   const [dividend, setDividend] = useState<number>(0);
+  const ref = useRef(0);
+  ref.current++;
+  console.log(counter, ref.current);
 
   function handleDividendChange(event: ChangeEvent<HTMLInputElement>) {
     setDividend(event.target!.valueAsNumber);
