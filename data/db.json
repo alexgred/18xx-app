@@ -1,0 +1,37 @@
+{
+  "games": [
+    {
+      "id": 0,
+      "bank": 12000,
+      "editor": 0
+    }
+  ],
+  "players": [
+    {
+      "id": 0,
+      "name": "Player 1",
+      "total": 12
+    },
+    {
+      "id": 1,
+      "name": "Player 2",
+      "total": 812
+    },
+    {
+      "id": 2,
+      "name": "Player 3",
+      "total": 87
+    }
+  ],
+  "companies": [
+    {
+      "id": 0,
+      "name": "Company 1",
+      "total": 800,
+      "director": 2
+    }
+  ],
+  "settings": {
+    "companies": ["B&O", "NMW", "LRS", "N&H"]
+  }
+}
