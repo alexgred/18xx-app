@@ -31,9 +31,15 @@
         "total": 800,
         "director": 2
       }
-    ],
-    "settings": {
-      "companies": ["B&O", "NMW", "LRS", "N&H"]
-    }
+    ]
+  },
+  "settings": {
+    "companies": [
+      "B&O",
+      "NMW",
+      "LRS",
+      "N&H",
+      "QAR"
+    ]
   }
 }

@@ -1,26 +1,66 @@
 'use client';
 
-import config from '@/configs/companies-1862.json';
+import { fetcher } from '@/lib/fetcher';
+import { ChangeEvent, useState } from 'react';
+import useSWR from 'swr';
 
-interface ICompany {
-  id: number;
-  name: string;
-}
+type Price = 70 | 80 | 90 | 100;
 
 export default function FormAddCompany() {
-  const list = config.companies?.map((company: ICompany) => {
+  const { data, error, isLoading, mutate } = useSWR(
+    '/api/1862/settings',
+    fetcher,
+  );
+  const [name, setName] = useState<string>('');
+  const [price, setPrice] = useState<number>(0);
+
+  const listName =
+    !isLoading &&
+    data?.data?.companies?.map((company: string, index: number) => {
+      return (
+        <option key={index} value={index}>
+          {company}
+        </option>
+      );
+    });
+
+  const priceArr: Price[] = [70, 80, 90, 100];
+  const listPrice = priceArr.map((price: Price, index: number) => {
     return (
-      <option value={company.id}>{company.name}</option>
-    )
+      <option key={index} value={price}>
+        {price}
+      </option>
+    );
   });
 
+  function handleName(event: ChangeEvent<HTMLSelectElement>) {
+    setName(event.target.value);
+  }
+
+  function handlePrice(event: ChangeEvent<HTMLSelectElement>) {
+    setName(event.target.value);
+  }
+
+  function handleSubmit() {
+    const qq: any = { companies: [...data?.data?.companies, 'QAR'] };
+
+    return mutate(fetcher('/api/1862/settings', { method: 'POST', body: JSON.stringify(qq) }), {
+    });
+  }
+
+  console.log(data);
+
   return (
-    <form>
-      <input type="text" placeholder="Company name" />
-      <select name="companies" defaultValue="2">
-        {list}
+    <div>
+      <select onChange={handleName} name="companies" defaultValue="2">
+        {listName}
       </select>
-      <button type="submit">Add</button>
-    </form>
+      <select onChange={handlePrice} name="price" defaultValue="1">
+        {listPrice}
+      </select>
+      <button onClick={handleSubmit} type="button">
+        Add
+      </button>
+    </div>
   );
 }
