@@ -1,18 +1,23 @@
-import Bank from '@/components/Bank/Bank';
-import PlayersSection from '@/components/PlayersSection/PlayersSection';
-import CompaniesSection from '@/components/CompaniesSection/CompaniesSection';
+import Bank from '@/components/tools/Bank/Bank';
+import Players from '@/components/player/Players/Players';
+import Companies from '@/components/company/Companies/Companies';
+import Tools from '@/components/tools/Tools/Tools';
+import getGame from '@/actions/getGame';
 import styles from './page.module.css';
-import Tools from '@/components/Tools/Tools';
 
-export default function Page1862() {
+
+export default async function Page1862() {
+  const { games } = await getGame();
+  const total = games[0].bank;
+
   return (
     <div className={styles.layout}>
       <div className={styles.main}>
-        <PlayersSection />
-        <CompaniesSection />
+        <Players />
+        <Companies />
       </div>
       <div className={styles.side}>
-        <Bank />
+        <Bank total={total} />
         <Tools />
       </div>
     </div>

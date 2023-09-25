@@ -1,4 +1,4 @@
-import Header from '@/components/Header/Header';
+import Header from '@/components/common/Header';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
