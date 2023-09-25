@@ -1,10 +1,8 @@
-import Bank from '@/components/tools/Bank/Bank';
-import Players from '@/components/player/Players/Players';
-import Companies from '@/components/company/Companies/Companies';
-import Tools from '@/components/tools/Tools/Tools';
+import { Bank, Tools } from '@/components/tools';
+import { Players } from '@/components/player';
+import { Companies } from '@/components/company';
 import getGame from '@/actions/getGame';
 import styles from './page.module.css';
-
 
 export default async function Page1862() {
   const { games } = await getGame();

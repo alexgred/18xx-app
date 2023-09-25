@@ -2,7 +2,7 @@
 
 import { ChangeEvent, useState } from 'react';
 
-export default function ToolsDividend() {
+export default function Dividend() {
   const [dividend, setDividend] = useState<number>(0);
 
   function handleDividendChange(event: ChangeEvent<HTMLInputElement>) {

@@ -1,5 +1,5 @@
 import styles from './Tools.module.css';
-import ToolsDividend from '../ToolsDividend/ToolsDividend';
+import Dividend from '../Dividend';
 
 export default function Tools() {
 
@@ -9,7 +9,7 @@ export default function Tools() {
         Tools:
       </div>
       <div>
-        <ToolsDividend />
+        <Dividend />
       </div>
     </div>
   );

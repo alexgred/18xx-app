@@ -1,4 +1,4 @@
-import Player from '../Player/Player';
+import Player from '../Player';
 import styles from './Players.module.css';
 import getGame from '@/actions/getGame';
 

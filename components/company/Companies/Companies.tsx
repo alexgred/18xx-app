@@ -1,4 +1,4 @@
-import Company from '../Company/Company';
+import Company from '../Company';
 import AddCompany from './AddCompany/AddCompany';
 import styles from './Companies.module.css';
 import getGame from '@/actions/getGame';

@@ -15,13 +15,12 @@ export default function FormAddCompany() {
   });
 
   return (
-    <form action="">
+    <form>
       <input type="text" placeholder="Company name" />
       <select name="companies" defaultValue="2">
         {list}
       </select>
       <button type="submit">Add</button>
     </form>
-
   );
 }

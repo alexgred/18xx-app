@@ -1,4 +1,4 @@
-import Header from '@/components/common/Header';
+import { Header } from '@/components/common';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={openSans.className}>
         <Header />
         {children}
-        </body>
+      </body>
     </html>
   );
-};
+}
