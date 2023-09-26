@@ -1,62 +1,95 @@
 'use client';
 
 import { fetcher } from '@/lib/fetcher';
-import { ChangeEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, ReactNode, useState } from 'react';
 import useSWR from 'swr';
 
 type Price = 70 | 80 | 90 | 100;
 
 export default function FormAddCompany() {
-  const { data, error, isLoading, mutate } = useSWR(
-    '/api/1862/settings',
-    fetcher,
-  );
+  const { data, isLoading, mutate } = useSWR('/api', fetcher, {suspense: true});
   const [name, setName] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
+  const [director, setDirector] = useState<number>(0);
 
-  const listName =
+  const settings = data?.data?.settings?.companies || [];
+  const companies = data?.data?.companies || [];
+  const players = data?.data?.players || [];
+
+  const route = useRouter();
+
+  const listName: ReactNode =
     !isLoading &&
-    data?.data?.companies?.map((company: string, index: number) => {
-      return (
-        <option key={index} value={index}>
-          {company}
-        </option>
-      );
-    });
+    settings.map((company: string) => (
+      <option key={company} value={company}>
+        {company}
+      </option>
+    ));
 
   const priceArr: Price[] = [70, 80, 90, 100];
-  const listPrice = priceArr.map((price: Price, index: number) => {
-    return (
-      <option key={index} value={price}>
-        {price}
-      </option>
-    );
-  });
+  const listPrice: ReactNode = priceArr.map((value: Price) => (
+    <option key={value} value={value}>
+      {value}
+    </option>
+  ));
+
+  const listDirector: ReactNode = players.map((value: Player) => (
+    <option key={value.id} value={value.id}>
+      {value.name}
+    </option>
+  ));
 
   function handleName(event: ChangeEvent<HTMLSelectElement>) {
-    setName(event.target.value);
+    setName(event.target?.value);
   }
 
   function handlePrice(event: ChangeEvent<HTMLSelectElement>) {
-    setName(event.target.value);
+    setPrice(Number(event.target?.value));
+  }
+
+  function handleDirector(event: ChangeEvent<HTMLSelectElement>) {
+    setDirector(Number(event.target?.value));
   }
 
   function handleSubmit() {
-    const qq: any = { companies: [...data?.data?.companies, 'QAR'] };
+    const newCompany = {
+      companies: [
+        ...companies,
+        {
+          id: companies.length,
+          name,
+          total: price * 10,
+          director,
+        },
+      ],
+    };
 
-    return mutate(fetcher('/api/1862/settings', { method: 'POST', body: JSON.stringify(qq) }), {
-    });
+    route.refresh();
+
+    return mutate(
+      fetcher('/api', {
+        method: 'POST',
+        body: JSON.stringify({ ...data?.data, ...newCompany }),
+      }),
+    );
   }
 
-  console.log(data);
+  // console.log(cache);
 
   return (
     <div>
-      <select onChange={handleName} name="companies" defaultValue="2">
+      <select onChange={handleName} name="companies">
+        <option value="default">Select company</option>
         {listName}
       </select>
-      <select onChange={handlePrice} name="price" defaultValue="1">
+      <select onChange={handlePrice} name="price">
+        <option value="default">Select price</option>
         {listPrice}
+      </select>
+      <select onChange={handleDirector} name="director">
+        <option value="default">Select Director</option>
+        {listDirector}
       </select>
       <button onClick={handleSubmit} type="button">
         Add

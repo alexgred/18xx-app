@@ -6,5 +6,5 @@ interface Company {
   id: number;
   name: string;
   total: number;
-  director: 2;
+  director: number;
 }
