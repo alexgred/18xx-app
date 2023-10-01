@@ -30,6 +30,18 @@
         "name": "Company 1",
         "total": 800,
         "director": 2
+      },
+      {
+        "id": 1,
+        "name": "NMW",
+        "total": 800,
+        "director": 0
+      },
+      {
+        "id": 2,
+        "name": "QAR",
+        "total": 700,
+        "director": 2
       }
     ],
     "settings": {

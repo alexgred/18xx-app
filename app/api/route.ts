@@ -9,7 +9,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const body = await req.json();
-  console.log('post', body);
+  // console.log('post', body);
 
   const res = await fetch('http://localhost:3001/api', {
     method: 'POST',

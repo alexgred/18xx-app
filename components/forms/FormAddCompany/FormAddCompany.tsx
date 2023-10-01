@@ -1,7 +1,6 @@
 'use client';
 
 import { fetcher } from '@/lib/fetcher';
-import { useRouter } from 'next/navigation';
 import { ChangeEvent, ReactNode, useState } from 'react';
 import useSWR from 'swr';
 
@@ -16,8 +15,6 @@ export default function FormAddCompany() {
   const settings = data?.data?.settings?.companies || [];
   const companies = data?.data?.companies || [];
   const players = data?.data?.players || [];
-
-  const route = useRouter();
 
   const listName: ReactNode =
     !isLoading &&
@@ -65,8 +62,6 @@ export default function FormAddCompany() {
       ],
     };
 
-    route.refresh();
-
     return mutate(
       fetcher('/api', {
         method: 'POST',
@@ -74,8 +69,6 @@ export default function FormAddCompany() {
       }),
     );
   }
-
-  // console.log(cache);
 
   return (
     <div>
