@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import styles from './Header.module.css';
+import styles from './HeaderGame.module.css';
 
-export default function Header() {
+export default function HeaderGame() {
 
   return (
     <header className={styles.header}>
-      <div className={`${styles.navigation} ${styles.container}`}>
+      <div className={styles.container}>
         <Link href="/rules">Rules</Link>
         <Link href="/login">Login</Link>
       </div>

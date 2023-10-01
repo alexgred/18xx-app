@@ -1,0 +1,9 @@
+.layout {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.content {
+  flex: 1;
+}

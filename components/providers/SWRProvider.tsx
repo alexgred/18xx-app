@@ -11,7 +11,7 @@ export default function SWRProvider({
 }) {
   const q = {
     fallback: {
-      '/api1': fallback,
+      '/api': fallback,
     }
   };
 
