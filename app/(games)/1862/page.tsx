@@ -1,20 +1,20 @@
 import { Bank, Tools } from '@/components/bank';
 import { Players } from '@/components/player';
-import { Companies } from '@/components/company';
 import getGame from '@/actions/getGame';
 import styles from './page.module.css';
 import SWRProvider from '@/components/providers/SWRProvider';
+import { CompanyLayout } from '@/components/company';
 
 export default async function Page1862() {
-  const { games } = await getGame();
-  const total = games[0].bank;
+  const data = await getGame();
+  const total = data.games[0].bank;
 
   return (
-    <SWRProvider fallback={games}>
+    <SWRProvider fallback={data}>
       <div className={styles.layout}>
         <div className={styles.main}>
           <Players />
-          <Companies />
+          <CompanyLayout />
         </div>
         <div className={styles.side}>
           <Bank total={total} />

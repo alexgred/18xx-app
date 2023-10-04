@@ -9,17 +9,11 @@ export default function SWRProvider({
   children: React.ReactNode;
   fallback: any;
 }) {
-  const q = {
+  const config = {
     fallback: {
       '/api': fallback,
     }
   };
 
-  console.log(q.fallback);
-
-  return (
-    <SWRConfig value={{...q}}>
-      {children}
-    </SWRConfig>
-  );
+  return <SWRConfig value={{ ...config }}>{children}</SWRConfig>;
 }

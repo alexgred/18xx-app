@@ -7,7 +7,7 @@ import useSWR from 'swr';
 type Price = 70 | 80 | 90 | 100;
 
 export default function FormAddCompany() {
-  const { data, isLoading, mutate } = useSWR('/api', fetcher, {suspense: true});
+  const { data, isLoading, mutate } = useSWR('/api', fetcher);
   const [name, setName] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
   const [director, setDirector] = useState<number>(0);

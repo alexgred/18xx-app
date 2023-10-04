@@ -1,11 +1,15 @@
+'use client';
+
+import useSWR from 'swr';
 import Player from '../Player';
 import styles from './Players.module.css';
 import getGame from '@/actions/getGame';
+import { fetcher } from '@/lib/fetcher';
 
-export default async function Players() {
-  const { players } = await getGame();
+export default function Players() {
+  const { data, isLoading, error } = useSWR('/api', fetcher);
 
-  const list = players?.map((player: Player) => (
+  const list = data?.players?.map((player: Player) => (
     <Player key={player.id} name={player.name} total={player.total} />
   ));
 
