@@ -1,23 +1,39 @@
-import Link from 'next/link';
+
+import NavLink from '../NavLink';
 import styles from './HeaderGame.module.css';
-import { ChartBarIcon, HomeIcon, UserIcon } from '@heroicons/react/24/outline';
+import {
+  BarChart3Icon,
+  BoxIcon,
+  HomeIcon,
+  SettingsIcon,
+  User2Icon,
+} from 'lucide-react';
 
 export default function HeaderGame() {
+  const iconSize = 40;
+  const iconStroke = 1;
+
   return (
     <header className={styles.header}>
       <div className={`${styles.container} ${styles.navigation}`}>
         <div className={styles.menu}>
-          <Link href="/" title="Home" className={styles.icon}>
-            <HomeIcon />
-          </Link>
-          <Link href="/1862/stats" className={styles.icon}>
-            <ChartBarIcon />
-          </Link>
+          <NavLink href="/" title="Home">
+            <HomeIcon size={iconSize} strokeWidth={iconStroke} />
+          </NavLink>
+          <NavLink href="/1862" title="Game">
+            <BoxIcon size={iconSize} strokeWidth={iconStroke} />
+          </NavLink>
+          <NavLink href="/1862/stats" title="Stats">
+            <BarChart3Icon size={iconSize} strokeWidth={iconStroke} />
+          </NavLink>
         </div>
         <div className={styles.menu}>
-          <Link href="/login" title="Login" className={styles.icon}>
-            <UserIcon />
-          </Link>
+          <NavLink href="/login" title="Login">
+            <User2Icon size={iconSize} strokeWidth={iconStroke} />
+          </NavLink>
+          <NavLink href="/1862/settings" title="Settings">
+            <SettingsIcon size={iconSize} strokeWidth={iconStroke} />
+          </NavLink>
         </div>
       </div>
     </header>

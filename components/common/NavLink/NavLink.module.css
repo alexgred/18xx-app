@@ -1,0 +1,18 @@
+.icon {
+  color: var(--color-navigation);
+  display: flex;
+  width: 100%;
+  padding: 5px 8px 5px 7px;
+  justify-content: center;
+  height: 50px;
+  transition: all 0.3s;
+  border-left: 5px solid transparent;
+}
+
+.icon:hover {
+  background-color: var(--color-navigation-hover);
+}
+
+.icon.active {
+  border-left: 5px solid #e08080;
+}
