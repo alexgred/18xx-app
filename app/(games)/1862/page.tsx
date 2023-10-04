@@ -1,4 +1,4 @@
-import { Bank, Tools } from '@/components/tools';
+import { Bank, Tools } from '@/components/bank';
 import { Players } from '@/components/player';
 import { Companies } from '@/components/company';
 import getGame from '@/actions/getGame';

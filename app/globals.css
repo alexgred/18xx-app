@@ -4,6 +4,8 @@
   --container-padding: 20px;
 
   --color-border: #656565;
+  --color-navigation: #323232;
+  --color-navigation-hover: #a6a6a6;
 }
 
 @media (prefers-color-scheme: dark) {

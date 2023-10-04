@@ -4,6 +4,7 @@
   flex-wrap: nowrap;
   align-content: flex-start;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .main {
@@ -13,5 +14,4 @@
 
 .side {
   width: 300px;
-  padding: var(--container-padding);
 }

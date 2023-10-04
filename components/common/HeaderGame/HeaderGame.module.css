@@ -1,5 +1,5 @@
 .header {
-  --header-height: 100vw;
+  --header-height: 100vh;
   --header-width: 60px;
 
   background-color: #ccc;
@@ -10,4 +10,34 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 20px 0;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.icon {
+  color: var(--color-navigation);
+  display: flex;
+  width: 100%;
+  padding: 5px 10px;
+  justify-content: center;
+  height: 50px;
+  transition: all 0.3s;
+}
+
+.icon:hover {
+  background-color: var(--color-navigation-hover);
 }
