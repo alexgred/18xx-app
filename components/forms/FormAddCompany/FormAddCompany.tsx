@@ -1,28 +1,31 @@
 'use client';
 
 import { fetcher } from '@/lib/fetcher';
-import { ChangeEvent, ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
+import { useForm } from 'react-hook-form';
 import useSWR from 'swr';
 
 type Price = 70 | 80 | 90 | 100;
 
+type FormData = {
+  name: string;
+  price: Price;
+  director: string;
+};
+
 export default function FormAddCompany() {
-  const { data, isLoading, mutate } = useSWR('/api', fetcher);
-  const [name, setName] = useState<string>('');
-  const [price, setPrice] = useState<number>(0);
-  const [director, setDirector] = useState<number>(0);
+  const { data, mutate } = useSWR('/api', fetcher);
+  const settings = data?.settings?.companies || [];
+  const companies = data?.companies || [];
+  const players = data?.players || [];
 
-  const settings = data?.data?.settings?.companies || [];
-  const companies = data?.data?.companies || [];
-  const players = data?.data?.players || [];
+  const { register, handleSubmit } = useForm<FormData>();
 
-  const listName: ReactNode =
-    !isLoading &&
-    settings.map((company: string) => (
-      <option key={company} value={company}>
-        {company}
-      </option>
-    ));
+  const listName: ReactNode = settings.map((company: string) => (
+    <option key={company} value={company}>
+      {company}
+    </option>
+  ));
 
   const priceArr: Price[] = [70, 80, 90, 100];
   const listPrice: ReactNode = priceArr.map((value: Price) => (
@@ -37,19 +40,7 @@ export default function FormAddCompany() {
     </option>
   ));
 
-  function handleName(event: ChangeEvent<HTMLSelectElement>) {
-    setName(event.target?.value);
-  }
-
-  function handlePrice(event: ChangeEvent<HTMLSelectElement>) {
-    setPrice(Number(event.target?.value));
-  }
-
-  function handleDirector(event: ChangeEvent<HTMLSelectElement>) {
-    setDirector(Number(event.target?.value));
-  }
-
-  function handleSubmit() {
+  function onSubmit({ name, price, director }: FormData) {
     const newCompany = {
       companies: [
         ...companies,
@@ -65,28 +56,44 @@ export default function FormAddCompany() {
     return mutate(
       fetcher('/api', {
         method: 'POST',
-        body: JSON.stringify({ ...data?.data, ...newCompany }),
+        body: JSON.stringify({ ...data, ...newCompany }),
       }),
+      {
+        revalidate: false,
+      },
     );
   }
 
   return (
-    <div>
-      <select onChange={handleName} name="companies">
-        <option value="default">Select company</option>
-        {listName}
-      </select>
-      <select onChange={handlePrice} name="price">
-        <option value="default">Select price</option>
-        {listPrice}
-      </select>
-      <select onChange={handleDirector} name="director">
-        <option value="default">Select Director</option>
-        {listDirector}
-      </select>
-      <button onClick={handleSubmit} type="button">
-        Add
-      </button>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label>
+        Company
+        <select {...register('name', { required: true })}>
+          <option hidden value="default">
+            Select company
+          </option>
+          {listName}
+        </select>
+      </label>
+      <label>
+        Share price
+        <select {...register('price', { required: true })}>
+          <option hidden value="default">
+            Select price
+          </option>
+          {listPrice}
+        </select>
+      </label>
+      <label>
+        Director
+        <select {...register('director', { required: true })}>
+          <option hidden value="default">
+            Select Director
+          </option>
+          {listDirector}
+        </select>
+      </label>
+      <button type="submit">Add</button>
+    </form>
   );
 }

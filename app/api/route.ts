@@ -6,7 +6,7 @@ export async function GET() {
   });
   const data = await res.json();
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ ...data });
 }
 
 export async function POST(req: Request) {
@@ -20,5 +20,5 @@ export async function POST(req: Request) {
   });
   const data = await res.json();
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ ...data });
 }

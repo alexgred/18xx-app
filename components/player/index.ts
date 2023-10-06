@@ -1,2 +1,2 @@
-export { default as Players } from './Players';
+export { default as PlayerLayout } from './PlayerLayout';
 export { default as Player } from './Player';
