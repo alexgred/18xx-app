@@ -1,5 +1,6 @@
 'use client';
 
+import { Select } from '@/components/ui';
 import { fetcher } from '@/lib/fetcher';
 import { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
@@ -66,15 +67,12 @@ export default function FormAddCompany() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Company
-        <select {...register('name', { required: true })}>
-          <option hidden value="default">
-            Select company
-          </option>
-          {listName}
-        </select>
-      </label>
+      <Select
+        {...register('name', { required: true })}
+        defaultValue="Select name"
+        label='Company name'>
+        {listName}
+      </Select>
       <label>
         Share price
         <select {...register('price', { required: true })}>

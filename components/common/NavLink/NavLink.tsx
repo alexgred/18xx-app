@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './NavLink.module.css';
+import { HTMLAttributes } from 'react';
 
 export default function NavLink({
   children,
@@ -11,7 +12,7 @@ export default function NavLink({
 }: {
   children: React.ReactNode;
   href: string;
-} & React.HTMLAttributes<HTMLAnchorElement>) {
+} & HTMLAttributes<HTMLAnchorElement>) {
   const pathname = usePathname();
 
   return (
