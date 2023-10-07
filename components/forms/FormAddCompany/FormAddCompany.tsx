@@ -97,7 +97,7 @@ export default function FormAddCompany() {
         label="Director">
         {listDirector}
       </Select>
-      <button disabled={!isValid} type="submit">Add</button>
+      <button disabled={!isValid}>Add</button>
     </form>
   );
 }

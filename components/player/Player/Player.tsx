@@ -1,3 +1,4 @@
+import PlayerPanel from '../PlayerPanel';
 import styles from './Player.module.css';
 
 export default function Player({
@@ -8,12 +9,15 @@ export default function Player({
   total: number;
 }) {
   return (
-    <div className={styles.player}>
-      <div className={styles.name}>{name}</div>
-      <div className={styles.total}>
-        <span className={styles.label}>Total:</span>
-        <span className={styles.value}>{total}</span>
+    <div className={styles.container}>
+      <div className={styles.player}>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.total}>
+          <span className={styles.label}>Total:</span>
+          <span className={styles.value}>{total}</span>
+        </div>
       </div>
+      <PlayerPanel />
     </div>
   );
 }
