@@ -1,15 +1,16 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export default function Label({
+export default function SelectLabel({
   children,
   text,
+  ...args
 }: {
   children: ReactNode;
   text?: string;
-}) {
+} & HTMLAttributes<HTMLLabelElement>) {
   if (text) {
     return (
-      <label>
+      <label {...args}>
         {text}
         {children}
       </label>

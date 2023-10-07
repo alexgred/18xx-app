@@ -3,8 +3,9 @@
 import { Select } from '@/components/ui';
 import { fetcher } from '@/lib/fetcher';
 import { ReactNode } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import useSWR from 'swr';
+import styles from './FormAddCompany.module.css';
 
 type Price = 70 | 80 | 90 | 100;
 
@@ -20,7 +21,13 @@ export default function FormAddCompany() {
   const companies = data?.companies || [];
   const players = data?.players || [];
 
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<FormData>();
+  const requiredMessage: string = 'Required field';
 
   const listName: ReactNode = settings.map((company: string) => (
     <option key={company} value={company}>
@@ -54,7 +61,7 @@ export default function FormAddCompany() {
       ],
     };
 
-    return mutate(
+    mutate(
       fetcher('/api', {
         method: 'POST',
         body: JSON.stringify({ ...data, ...newCompany }),
@@ -63,35 +70,34 @@ export default function FormAddCompany() {
         revalidate: false,
       },
     );
+
+    reset();
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <Select
-        {...register('name', { required: true })}
+        {...register('name', { required: requiredMessage })}
         defaultValue="Select name"
-        label='Company name'>
+        error={errors?.name?.message}
+        label="Company name">
         {listName}
       </Select>
-      <label>
-        Share price
-        <select {...register('price', { required: true })}>
-          <option hidden value="default">
-            Select price
-          </option>
-          {listPrice}
-        </select>
-      </label>
-      <label>
-        Director
-        <select {...register('director', { required: true })}>
-          <option hidden value="default">
-            Select Director
-          </option>
-          {listDirector}
-        </select>
-      </label>
-      <button type="submit">Add</button>
+      <Select
+        {...register('price', { required: requiredMessage })}
+        defaultValue="Select price"
+        error={errors?.price?.message}
+        label="Share price">
+        {listPrice}
+      </Select>
+      <Select
+        {...register('director', { required: requiredMessage })}
+        defaultValue="Select director"
+        error={errors?.price?.message}
+        label="Director">
+        {listDirector}
+      </Select>
+      <button disabled={!isValid} type="submit">Add</button>
     </form>
   );
 }
