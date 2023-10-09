@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useState } from 'react';
 import styles from './Company.module.css';
+import { FormBuyTrain } from '@/components/forms';
 
 export default function Company({
   name,
@@ -38,6 +39,7 @@ export default function Company({
           Dividend
         </button>
         <button type="button">Edit</button>
+        <FormBuyTrain />
       </div>
     </div>
   );

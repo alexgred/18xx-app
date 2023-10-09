@@ -20,10 +20,10 @@ export default function HeaderGame() {
           <NavLink href="/" title="Home">
             <HomeIcon size={iconSize} strokeWidth={iconStroke} />
           </NavLink>
-          <NavLink href="/1862" title="Game">
+          <NavLink href="/1830" title="Game">
             <BoxIcon size={iconSize} strokeWidth={iconStroke} />
           </NavLink>
-          <NavLink href="/1862/stats" title="Stats">
+          <NavLink href="/1830/stats" title="Stats">
             <BarChart3Icon size={iconSize} strokeWidth={iconStroke} />
           </NavLink>
         </div>
@@ -31,7 +31,7 @@ export default function HeaderGame() {
           <NavLink href="/login" title="Login">
             <User2Icon size={iconSize} strokeWidth={iconStroke} />
           </NavLink>
-          <NavLink href="/1862/settings" title="Settings">
+          <NavLink href="/1830/settings" title="Settings">
             <SettingsIcon size={iconSize} strokeWidth={iconStroke} />
           </NavLink>
         </div>
