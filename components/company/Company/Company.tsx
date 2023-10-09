@@ -1,18 +1,16 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
 import styles from './Company.module.css';
 import { FormBuyTrain } from '@/components/forms';
 import FormCompanyIncome from '@/components/forms/FormCompanyIncome';
 
-export default function Company({
-  name,
-  total,
-}: {
+type CompanyProps = {
   name: string;
   total: number;
-}) {
+  id: number;
+}
 
+export default function Company({ name, total, id }: CompanyProps) {
   return (
     <div className={styles.company}>
       <div className={styles.name}>{name}</div>
@@ -22,8 +20,8 @@ export default function Company({
       </div>
 
       <div className={styles.controls}>
-        <FormCompanyIncome />
-        <FormBuyTrain />
+        <FormCompanyIncome id={id} />
+        <FormBuyTrain id={id} />
         <button type="button">Edit</button>
       </div>
     </div>

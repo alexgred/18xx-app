@@ -33,7 +33,7 @@ const trains: Train[] = [
   },
 ];
 
-export default function FormBuyTrain() {
+export default function FormBuyTrain({id}: {id: number}) {
   const {
     register,
     handleSubmit,
@@ -48,7 +48,7 @@ export default function FormBuyTrain() {
   ));
 
   function onSubmit({ price }: FormData) {
-    console.log({ price });
+    console.log({ price }, id);
     reset();
   }
 

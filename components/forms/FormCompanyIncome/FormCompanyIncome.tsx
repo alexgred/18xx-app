@@ -2,12 +2,23 @@
 
 import { useForm } from 'react-hook-form';
 import styles from './FormCompanyIncome.module.css';
+import useSWRMutation from 'swr/mutation';
+import { fetcher } from '@/lib/fetcher';
 
 type FormData = {
   income: number;
 };
 
-export default function FormCompanyIncome() {
+
+
+async function updateCompany(key: string, { arg }: { arg: string }) {
+  await fetcher(key, {
+    method: 'POST',
+    body: JSON.stringify({ arg }),
+  });
+}
+
+export default function FormCompanyIncome({ id }: { id: number }) {
   const {
     register,
     handleSubmit,
@@ -15,8 +26,10 @@ export default function FormCompanyIncome() {
     formState: { errors, isValid },
   } = useForm<FormData>({ mode: 'onChange' });
 
+  const { trigger } = useSWRMutation('/api', updateCompany);
+
   function onSubmit({ income }: FormData) {
-    console.log({ income });
+    console.log({ income }, id);
     reset();
   }
 
