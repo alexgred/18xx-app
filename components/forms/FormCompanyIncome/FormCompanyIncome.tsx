@@ -1,19 +1,19 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import styles from './FormPlayerIncome.module.css';
+import styles from './FormCompanyIncome.module.css';
 
 type FormData = {
   income: number;
 };
 
-export default function FormPlayerIncome() {
+export default function FormCompanyIncome() {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<FormData>({mode: 'onChange'});
+  } = useForm<FormData>({ mode: 'onChange' });
 
   function onSubmit({ income }: FormData) {
     console.log({ income });
@@ -21,7 +21,7 @@ export default function FormPlayerIncome() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form}>
       <label>
         Income
         <input
@@ -39,10 +39,17 @@ export default function FormPlayerIncome() {
             },
           })}
         />
+        {errors?.income?.message}
       </label>
-      {errors?.income?.message}
-      <p>{isValid}</p>
-      <button disabled={!isValid}>Income</button>
+      <button
+        disabled={!isValid}
+        type="button"
+        onClick={handleSubmit(onSubmit)}>
+        Hold
+      </button>
+      <button disabled={!isValid} type="button">
+        Dividend
+      </button>
     </form>
   );
 }
